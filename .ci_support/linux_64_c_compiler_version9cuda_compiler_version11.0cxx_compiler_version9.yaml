@@ -25,7 +25,7 @@ docker_image:
 fmt:
 - '8'
 geos:
-- 3.10.2
+- 3.10.3
 gflags:
 - '2.2'
 glog:
