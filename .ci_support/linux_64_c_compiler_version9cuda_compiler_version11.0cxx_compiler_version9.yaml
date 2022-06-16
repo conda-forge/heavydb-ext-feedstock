@@ -65,9 +65,9 @@ snappy:
 target_platform:
 - linux-64
 tbb:
-- '2020'
+- '2021'
 tbb_devel:
-- '2020'
+- '2021'
 xerces_c:
 - '3.2'
 zip_keys:
