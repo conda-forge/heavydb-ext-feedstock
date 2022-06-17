@@ -1,7 +1,7 @@
 {% set version = "6.0.0" %}  # PEP 386
 {% set source_version = version %}
 {% set base_version = version %}
-{% set number = "4" %}
+{% set number = "6" %}
 {% set cuda_enabled = cuda_compiler_version is not undefined and cuda_compiler_version == '11.0' %}
 {% set build_ext_version = "1.0.0" %}
 {% set build_ext = "cuda" if cuda_enabled else "cpu" %}
@@ -281,6 +281,8 @@ outputs:
             heavydb --version                         # [unix and cuda_compiler_version not in (undefined, "None")]
             rm -rf data                               # [unix and cuda_compiler_version not in (undefined, "None")]
           fi                                          # [unix and cuda_compiler_version not in (undefined, "None")]
+        - test -f ${PREFIX}/{{ install_base }}/QueryEngine/cuda_mapd_rt.fatbin  # [unix and cuda_compiler_version not in (undefined, "None")]
+        - test -f ${PREFIX}/{{ install_base }}/QueryEngine/CudaTableFunctions.a  # [unix and cuda_compiler_version not in (undefined, "None")]
         # these are provided by heavydb-common package:
         - which heavydb_insert_sample_data  # [unix]
         - which startheavy  # [unix]
