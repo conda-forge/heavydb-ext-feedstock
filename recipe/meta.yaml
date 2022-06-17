@@ -282,8 +282,6 @@ outputs:
             heavydb --version                         # [unix and cuda_compiler_version not in (undefined, "None")]
             rm -rf data                               # [unix and cuda_compiler_version not in (undefined, "None")]
           fi                                          # [unix and cuda_compiler_version not in (undefined, "None")]
-        - test -f ${PREFIX}/{{ install_base }}/QueryEngine/cuda_mapd_rt.fatbin  # [unix and cuda_compiler_version not in (undefined, "None")]
-        - test -f ${PREFIX}/{{ install_base }}/QueryEngine/CudaTableFunctions.a  # [unix and cuda_compiler_version not in (undefined, "None")]
         # these are provided by heavydb-common package:
         - which heavydb_insert_sample_data  # [unix]
         - which startheavy  # [unix]
