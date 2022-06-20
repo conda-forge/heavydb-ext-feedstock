@@ -1,0 +1,165 @@
+From e123a99dbba055ec8277fcb6157772e1ca810f36 Mon Sep 17 00:00:00 2001
+From: Guilherme Leobas <gleobas@quansight.com>
+Date: Thu, 21 Apr 2022 02:19:24 +0000
+Subject: [PATCH] win
+
+---
+ CMakeLists.txt                                |  2 +-
+ .../ForeignStorage/ArrowForeignStorage.cpp    |  2 +-
+ QueryEngine/FromTableReordering.cpp           | 20 +++++++++----------
+ QueryEngine/JoinHashTable/HashJoin.h          |  2 +-
+ .../JoinHashTable/RangeJoinHashTable.cpp      |  2 +-
+ ThriftHandler/RenderHandler.h                 |  1 +
+ 6 files changed, 15 insertions(+), 14 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ac3a002389..2859170130 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -476,7 +476,7 @@ if(MSVC)
+   # If a future vcpkg release causes the reverse error message, then this line should be removed.
+   add_compile_definitions("BOOST_USE_WINAPI_VERSION=0x0601") #=BOOST_WINAPI_VERSION_WIN7
+   if(ENABLE_NO_WINWARNINGS)
+-    add_compile_definitions("_STL_EXTRA_DISABLED_WARNINGS=4146 4242 4244 4267 4355 4365 4458 4624 4820 4996 5204 5219" "NOMINMAX")
++    add_compile_definitions("_STL_EXTRA_DISABLED_WARNINGS=4146 4242 4244 4267 4355 4365 4458 4624 4820 4996 5204 5219 4571 4582 4583 4623 4625 4626 4710 4711 4774 5026 5027" "NOMINMAX")
+     # disable 4702 unreachable code warning
+     # with /Qspectre set, disable the warning C5045
+     add_compile_options(/W0 /wd4702 /wd5045)
+diff --git a/DataMgr/ForeignStorage/ArrowForeignStorage.cpp b/DataMgr/ForeignStorage/ArrowForeignStorage.cpp
+index 1ccf18d8a8..df172ca976 100644
+--- a/DataMgr/ForeignStorage/ArrowForeignStorage.cpp
++++ b/DataMgr/ForeignStorage/ArrowForeignStorage.cpp
+@@ -999,7 +999,7 @@ void ArrowCsvForeignStorage::registerTable(Catalog_Namespace::Catalog* catalog,
+     df_td = df_td_owned.get();
+   }
+ 
+-#ifdef ENABLE_ARROW_4 || defined(_WIN32)
++#if defined(ENABLE_ARROW_4) || defined(_WIN32)
+   auto io_context = arrow::io::default_io_context();
+ #else
+   auto io_context = arrow::default_memory_pool();
+diff --git a/QueryEngine/FromTableReordering.cpp b/QueryEngine/FromTableReordering.cpp
+index af0e65eabd..5650fac8e9 100644
+--- a/QueryEngine/FromTableReordering.cpp
++++ b/QueryEngine/FromTableReordering.cpp
+@@ -55,13 +55,13 @@ std::tuple<cost_t, cost_t, InnerQualDecision> get_join_qual_cost(
+         std::regex_match(func_name, geo_func_match, geo_func_regex)) {
+       const auto rhs_cost = GEO_TYPE_COSTS[geo_types_for_func[0]];
+       const auto lhs_cost = GEO_TYPE_COSTS[geo_types_for_func[1]];
+-      return {lhs_cost, rhs_cost, InnerQualDecision::IGNORE};
++      return {lhs_cost, rhs_cost, InnerQualDecision::IGNORE_};
+     }
+-    return {200, 200, InnerQualDecision::IGNORE};
++    return {200, 200, InnerQualDecision::IGNORE_};
+   }
+   const auto bin_oper = dynamic_cast<const Analyzer::BinOper*>(qual);
+   if (!bin_oper || !IS_EQUIVALENCE(bin_oper->get_optype())) {
+-    return {200, 200, InnerQualDecision::IGNORE};
++    return {200, 200, InnerQualDecision::IGNORE_};
+   }
+   InnerQualDecision inner_qual_decision = InnerQualDecision::UNKNOWN;
+   if (executor) {
+@@ -247,7 +247,7 @@ std::vector<node_t> traverse_join_cost_graph(
+       // KEEP: return the existing table permutation and related cvs (column variables)
+       // SWAP: change the starting table of the table reordering logic and relevant
+       // columns' rte index
+-      enum class Decision { IGNORE, KEEP, SWAP };
++      enum class Decision { IGNORE_, KEEP, SWAP };
+ 
+       auto analyze_join_qual = [&start,
+                                 &remaining_nest_levels,
+@@ -258,7 +258,7 @@ std::vector<node_t> traverse_join_cost_graph(
+                                               const std::shared_ptr<Analyzer::Expr>& rhs,
+                                               ColvarSet& rhs_colvar_set) {
+         if (!lhs || !rhs || lhs_colvar_set.empty() || rhs_colvar_set.empty()) {
+-          return std::make_pair(Decision::IGNORE, start);
++          return std::make_pair(Decision::IGNORE_, start);
+         }
+ 
+         auto alternative_it = std::find_if(
+@@ -268,7 +268,7 @@ std::vector<node_t> traverse_join_cost_graph(
+         CHECK(alternative_it != remaining_nest_levels.end());
+         auto alternative_rte = *alternative_it;
+ 
+-        Decision decision = Decision::IGNORE;
++        Decision decision = Decision::IGNORE_;
+         // inner col's rte should be larger than outer col
+         int inner_rte = -1;
+         int outer_rte = -1;
+@@ -313,7 +313,7 @@ std::vector<node_t> traverse_join_cost_graph(
+               // but ignore swapping when inner's cardinality is larger than that of
+               // outer's / otherwise swap inner and outer (to use the valid inner)
+               decision = is_outer_col_valid && inner_cardinality > outer_cardinality
+-                             ? Decision::IGNORE
++                             ? Decision::IGNORE_
+                              : Decision::SWAP;
+             } else {
+               CHECK_EQ(inner_rte, static_cast<int>(alternative_rte));
+@@ -321,7 +321,7 @@ std::vector<node_t> traverse_join_cost_graph(
+               if (compare_node(inner_rte, start)) {
+                 // but outer table is larger than the current inner
+                 // so we can exploit the existing table reordering logic
+-                decision = Decision::IGNORE;
++                decision = Decision::IGNORE_;
+               } else {
+                 // and outer table is smaller than the current inner
+                 // so we do not need to reorder the table starting from the inner
+@@ -336,7 +336,7 @@ std::vector<node_t> traverse_join_cost_graph(
+         } else if (decision == Decision::SWAP) {
+           return std::make_pair(decision, alternative_rte);
+         }
+-        return std::make_pair(Decision::IGNORE, start);
++        return std::make_pair(Decision::IGNORE_, start);
+       };
+ 
+       auto collect_colvars = [](const std::shared_ptr<Analyzer::Expr> expr,
+@@ -370,7 +370,7 @@ std::vector<node_t> traverse_join_cost_graph(
+           auto& rhs_exprs = rhs_exp->getTuple();
+           CHECK_EQ(lhs_exprs.size(), rhs_exprs.size());
+           for (size_t i = 0; i < lhs_exprs.size(); ++i) {
+-            Decision decision{Decision::IGNORE};
++            Decision decision{Decision::IGNORE_};
+             int alternative_rte_idx = -1;
+             ColvarSet lhs_colvar_set(Analyzer::ColumnVar::colvar_comp);
+             ColvarSet rhs_colvar_set(Analyzer::ColumnVar::colvar_comp);
+diff --git a/QueryEngine/JoinHashTable/HashJoin.h b/QueryEngine/JoinHashTable/HashJoin.h
+index 76d0dd7d58..f71b24dfd2 100644
+--- a/QueryEngine/JoinHashTable/HashJoin.h
++++ b/QueryEngine/JoinHashTable/HashJoin.h
+@@ -49,7 +49,7 @@ class TableMustBeReplicated : public std::runtime_error {
+                            "' must be replicated.") {}
+ };
+ 
+-enum class InnerQualDecision { IGNORE = 0, UNKNOWN, LHS, RHS };
++enum class InnerQualDecision { IGNORE_ = 0, UNKNOWN, LHS, RHS };
+ 
+ #ifndef __CUDACC__
+ inline std::ostream& operator<<(std::ostream& os, InnerQualDecision const decision) {
+diff --git a/QueryEngine/JoinHashTable/RangeJoinHashTable.cpp b/QueryEngine/JoinHashTable/RangeJoinHashTable.cpp
+index 60523121f4..6158ae3e1a 100644
+--- a/QueryEngine/JoinHashTable/RangeJoinHashTable.cpp
++++ b/QueryEngine/JoinHashTable/RangeJoinHashTable.cpp
+@@ -531,7 +531,7 @@ std::pair<size_t, size_t> RangeJoinHashTable::approximateTupleCount(
+       0,
+       11,
+       true,
+-      effective_memory_level == Data_Namespace::MemoryLevel::GPU_LEVEL
++      effective_memory_level_ == Data_Namespace::MemoryLevel::GPU_LEVEL
+           ? ExecutorDeviceType::GPU
+           : ExecutorDeviceType::CPU,
+       1,
+diff --git a/ThriftHandler/RenderHandler.h b/ThriftHandler/RenderHandler.h
+index 8cd485a16b..ccbe03cbcc 100644
+--- a/ThriftHandler/RenderHandler.h
++++ b/ThriftHandler/RenderHandler.h
+@@ -25,6 +25,7 @@
+ 
+ #include "Shared/SystemParameters.h"
+ #include "gen-cpp/Heavy.h"
++#include "Shared/cleanup_global_namespace.h"
+ 
+ class DBHandler;
+ 
+-- 
+2.25.1
+
