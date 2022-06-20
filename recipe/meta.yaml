@@ -26,10 +26,11 @@ source:
   sha256: a36d91227135e9ec8641b5f46e80927aaafce117f3446933dd7f392c9659996e
   patches:
     - 0003-Fix-HeavyDBE-build.patch
+    - 0004-Fix-Windows-build.patch  # [win]
 
 build:
   number: {{ number }}
-  skip: true  # [cuda_compiler_version not in (undefined, "None", "11.0") or not linux64]
+  skip: true  # [cuda_compiler_version not in (undefined, "None", "11.0")]
 
 outputs:
 
