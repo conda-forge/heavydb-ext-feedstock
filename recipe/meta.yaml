@@ -1,4 +1,4 @@
-{% set version = "6.0.0" %}  # PEP 386
+{% set version = "6.1.0" %}  # PEP 386
 {% set source_version = version %}
 {% set base_version = version %}
 {% set number = "6" %}
@@ -23,7 +23,7 @@ package:
 
 source:
   url: https://github.com/heavyai/heavydb/archive/v{{ source_version }}.tar.gz
-  sha256: a36d91227135e9ec8641b5f46e80927aaafce117f3446933dd7f392c9659996e
+  sha256: a3453e6fc84ad652fd764dddd918af944937048085c8322f5694b623db04ece7
   patches:
     - 0003-Fix-HeavyDBE-build.patch
     - 0004-Fix-Windows-build.patch  # [win]
@@ -154,7 +154,7 @@ outputs:
 
   - name: heavydb
     version: {{ version }}
-    script: build-heavydb.sh   # [linux64]
+    script: build-heavydb.sh  # [linux64]
     script: build-heavydb.bat  # [win]
     build:
       string: {{ build_string_ext }}
@@ -163,8 +163,7 @@ outputs:
       skip: true  # [win and cuda_compiler_version != "None"]
       missing_dso_whitelist:
         - '*/libcuda.*'  # [cuda_compiler_version not in (undefined, "None")]
-      track_features:
-        {{ "- arrow-cuda" if cuda_enabled else "" }}
+      track_features: {{ "- arrow-cuda" if cuda_enabled else "" }}
       ignore_run_exports:
         - cudatoolkit    # [cuda_compiler_version not in (undefined, "None")]
         - fmt
@@ -354,8 +353,7 @@ outputs:
       skip: true
       missing_dso_whitelist:
         - '*/libcuda.*'  # [cuda_compiler_version not in (undefined, "None")]
-      track_features:
-        {{ "- arrow-cuda" if cuda_enabled else "" }}
+      track_features: {{ "- arrow-cuda" if cuda_enabled else "" }}
       ignore_run_exports:
         - cudatoolkit    # [cuda_compiler_version not in (undefined, "None")]
         - fmt
@@ -458,8 +456,7 @@ outputs:
       skip: true  # temporarily skipping pyheavydbe build
       missing_dso_whitelist:
         - '*/libcuda.*'  # [cuda_compiler_version not in (undefined, "None")]
-      track_features:
-        {{ "- arrow-cuda" if cuda_enabled else "" }}
+      track_features: {{ "- arrow-cuda" if cuda_enabled else "" }}
       ignore_run_exports:
         - arrow-cpp {{ arrow_version }}
         - blosc
