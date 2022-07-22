@@ -76,9 +76,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-heavydb-green.svg)](https://anaconda.org/conda-forge/heavydb) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/heavydb.svg)](https://anaconda.org/conda-forge/heavydb) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/heavydb.svg)](https://anaconda.org/conda-forge/heavydb) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/heavydb.svg)](https://anaconda.org/conda-forge/heavydb) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-heavydb--common-green.svg)](https://anaconda.org/conda-forge/heavydb-common) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/heavydb-common.svg)](https://anaconda.org/conda-forge/heavydb-common) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/heavydb-common.svg)](https://anaconda.org/conda-forge/heavydb-common) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/heavydb-common.svg)](https://anaconda.org/conda-forge/heavydb-common) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-heavydbe-green.svg)](https://anaconda.org/conda-forge/heavydbe) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/heavydbe.svg)](https://anaconda.org/conda-forge/heavydbe) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/heavydbe.svg)](https://anaconda.org/conda-forge/heavydbe) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/heavydbe.svg)](https://anaconda.org/conda-forge/heavydbe) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pyheavydb-green.svg)](https://anaconda.org/conda-forge/pyheavydb) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyheavydb.svg)](https://anaconda.org/conda-forge/pyheavydb) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyheavydb.svg)](https://anaconda.org/conda-forge/pyheavydb) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyheavydb.svg)](https://anaconda.org/conda-forge/pyheavydb) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-pyheavydbe-green.svg)](https://anaconda.org/conda-forge/pyheavydbe) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyheavydbe.svg)](https://anaconda.org/conda-forge/pyheavydbe) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyheavydbe.svg)](https://anaconda.org/conda-forge/pyheavydbe) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyheavydbe.svg)](https://anaconda.org/conda-forge/pyheavydbe) |
 
 Installing heavydb-ext
 ======================
@@ -90,16 +88,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `heavydb, heavydb-common, heavydbe, pyheavydb, pyheavydbe` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `heavydb, heavydb-common, pyheavydb` can be installed with `conda`:
 
 ```
-conda install heavydb heavydb-common heavydbe pyheavydb pyheavydbe
+conda install heavydb heavydb-common pyheavydb
 ```
 
 or with `mamba`:
 
 ```
-mamba install heavydb heavydb-common heavydbe pyheavydb pyheavydbe
+mamba install heavydb heavydb-common pyheavydb
 ```
 
 It is possible to list all of the versions of `heavydb` available on your platform with `conda`:
