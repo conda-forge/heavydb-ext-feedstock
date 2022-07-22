@@ -26,7 +26,7 @@ source:
   sha256: a3453e6fc84ad652fd764dddd918af944937048085c8322f5694b623db04ece7
   patches:
     - 0003-Fix-HeavyDBE-build.patch
-    - 0005-Fix-Windows-build.patch  # [win]
+    - 0005-Fix-Windows-build-heavydb-610.patch  # [win]
 
 build:
   number: {{ number }}
