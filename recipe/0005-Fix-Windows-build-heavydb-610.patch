@@ -1,13 +1,14 @@
-From ce83ffccffe278b9cb444e4649c5ab2e0401e25d Mon Sep 17 00:00:00 2001
+From 2eed036d9c29f0e8b37308c5c0a3a96f6d8523fe Mon Sep 17 00:00:00 2001
 From: Guilherme Leobas <guilhermeleobas@gmail.com>
-Date: Thu, 21 Jul 2022 23:08:56 -0300
+Date: Fri, 22 Jul 2022 15:04:12 -0300
 Subject: [PATCH] Windows patch
 
 ---
  CMakeLists.txt                       |  2 +-
  QueryEngine/FromTableReordering.cpp  | 20 ++++++++++----------
  QueryEngine/JoinHashTable/HashJoin.h |  2 +-
- 3 files changed, 12 insertions(+), 12 deletions(-)
+ ThriftHandler/RenderHandler.h        |  2 ++
+ 4 files changed, 14 insertions(+), 12 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 3a8bf78f5f..28f75ce1f2 100644
@@ -119,6 +120,19 @@ index 64a446f77b..3fffacf48f 100644
  
  #ifndef __CUDACC__
  inline std::ostream& operator<<(std::ostream& os, InnerQualDecision const decision) {
+diff --git a/ThriftHandler/RenderHandler.h b/ThriftHandler/RenderHandler.h
+index d5be64e93d..21d83ce4f8 100644
+--- a/ThriftHandler/RenderHandler.h
++++ b/ThriftHandler/RenderHandler.h
+@@ -25,6 +25,8 @@
+ #include "Shared/SystemParameters.h"
+ #include "gen-cpp/Heavy.h"
+ 
++#include "Shared/cleanup_global_namespace.h"
++
+ class DBHandler;
+ 
+ namespace Catalog_Namespace {
 -- 
 2.34.1
 
