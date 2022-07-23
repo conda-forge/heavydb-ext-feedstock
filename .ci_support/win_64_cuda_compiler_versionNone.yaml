@@ -15,7 +15,7 @@ cxx_compiler:
 fmt:
 - '8'
 geos:
-- 3.10.3
+- 3.11.0
 gflags:
 - '2.2'
 glog:
