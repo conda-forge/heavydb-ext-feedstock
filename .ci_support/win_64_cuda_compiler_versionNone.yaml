@@ -1,7 +1,7 @@
 boost_cpp:
 - 1.74.0
 c_compiler:
-- vs2017
+- vs2019
 cgo_compiler:
 - go-cgo
 channel_sources:
@@ -11,7 +11,7 @@ channel_targets:
 cuda_compiler_version:
 - None
 cxx_compiler:
-- vs2017
+- vs2019
 fmt:
 - '9'
 geos:
@@ -31,7 +31,7 @@ libkml:
 libpng:
 - '1.6'
 librdkafka:
-- '1.7'
+- '1.9'
 libthrift:
 - 0.16.0
 ncurses:
