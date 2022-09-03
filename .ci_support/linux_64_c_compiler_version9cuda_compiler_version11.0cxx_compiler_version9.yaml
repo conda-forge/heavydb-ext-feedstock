@@ -39,7 +39,7 @@ libkml:
 libpng:
 - '1.6'
 librdkafka:
-- '1.7'
+- '1.9'
 libthrift:
 - 0.16.0
 ncurses:
