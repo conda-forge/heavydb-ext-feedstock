@@ -39,14 +39,6 @@ ncurses:
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
-  libevent:
-    max_pin: x.x.x
-  libgdal:
-    max_pin: x.x
-  libkml:
-    max_pin: x.x
-  libpng:
-    max_pin: x.x
 snappy:
 - '1'
 target_platform:

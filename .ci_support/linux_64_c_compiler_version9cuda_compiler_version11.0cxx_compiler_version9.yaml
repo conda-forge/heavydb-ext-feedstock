@@ -47,18 +47,11 @@ ncurses:
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
-  libgdal:
-    max_pin: x.x
-  libkml:
-    max_pin: x.x
-  libpng:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
 python:
 - 3.10.* *_cpython
-- 3.7.* *_cpython
 - 3.8.* *_73_pypy
 - 3.8.* *_cpython
 - 3.9.* *_73_pypy
