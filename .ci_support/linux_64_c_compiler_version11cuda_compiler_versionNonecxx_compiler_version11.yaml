@@ -3,7 +3,7 @@ boost_cpp:
 c_compiler:
 - gcc
 c_compiler_version:
-- '10'
+- '11'
 cdt_name:
 - cos6
 cgo_compiler:
@@ -19,7 +19,7 @@ cuda_compiler_version:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '10'
+- '11'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 fmt:
@@ -31,7 +31,7 @@ gflags:
 glog:
 - '0.6'
 libarchive:
-- '3.5'
+- '3.6'
 libgdal:
 - '3.6'
 libkml:

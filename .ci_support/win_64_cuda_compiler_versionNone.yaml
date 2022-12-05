@@ -21,7 +21,7 @@ gflags:
 glog:
 - '0.6'
 libarchive:
-- '3.5'
+- '3.6'
 libevent:
 - 2.1.10
 libgdal:
