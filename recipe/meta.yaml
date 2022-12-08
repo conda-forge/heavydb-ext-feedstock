@@ -10,8 +10,8 @@
 {% set py_build_string_ext = "py{}{}_{}".format(CONDA_PY, build_string, build_ext) %}
 {% set py_build_string = "py{}{}".format(CONDA_PY, build_string) %}
 {% set install_base = "opt/heavyai" %}
-{% set arrow_version = "7.*" %}
-{% set arrow_proc_version = "3.*" %}
+{% set arrow_version = "10.*" %}
+{% set arrow_proc_version = "4.*" %}
 {% set pythrift_version = "0.16.*" %}
 {% set thrift_version = "0.16.*" %}
 # heavydb 6.1.0 is not LLVM 12 ready
