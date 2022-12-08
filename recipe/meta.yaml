@@ -215,8 +215,7 @@ outputs:
         - libzlib
         - ncurses   # [unix]
         - openldap  # [unix]
-        # Workaround https://github.com/mamba-org/boa/issues/119 :
-        - openssl 1.1.1*
+        - openssl
         - snappy
         - tbb
         - tbb-devel
