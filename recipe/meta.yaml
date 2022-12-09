@@ -32,6 +32,14 @@ build:
   number: {{ number }}
   skip: true  # [cuda_compiler_version not in (undefined, "None", "11.0")]
 
+# add global dependency section to ensure we run
+# separate builds for different openssl versions
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+    - openssl
+
 outputs:
 
   - name: heavydb-common
@@ -61,6 +69,7 @@ outputs:
         - librdkafka
         - libstdcxx-ng
         - libthrift
+        - openssl
     requirements:
       build:
         # c compiler is specified here to get run constraint pins correct, presumably...
@@ -311,6 +320,8 @@ outputs:
       script: python -m pip install -vv --no-deps python/.
       run_exports:
         - {{ pin_subpackage('pyheavydb',  max_pin='x.x.x') }}
+      ignore_run_exports:
+        - openssl
     requirements:
       host:
         - pip
@@ -361,6 +372,7 @@ outputs:
         - glog
         - libclang-cpp
         - librdkafka
+        - openssl
         - ncurses
         - zlib
       rpaths:
@@ -472,6 +484,7 @@ outputs:
         - libpng
         - librdkafka
         - libthrift {{ thrift_version }}
+        - openssl
         - pyarrow {{ arrow_version }}
         - python
         - tbb
