@@ -25,8 +25,7 @@ source:
   url: https://github.com/heavyai/heavydb/archive/v{{ source_version }}.tar.gz
   sha256: 9b103083d93c7dc3318ae51636f98540ae08f930ab63c0f6dae7882f755588ea
   patches:
-    - 0003-Fix-HeavyDBE-build.patch
-    - 0005-Fix-Windows-build-heavydb-610.patch  # [win]
+    - 0006-Fix-Windows-build-heavydb-620.patch  # [win]
 
 build:
   number: {{ number }}

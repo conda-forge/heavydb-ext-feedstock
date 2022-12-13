@@ -1,0 +1,82 @@
+From 4e32d5a776a288a2d6c3cfadaeec3b8cb0b41982 Mon Sep 17 00:00:00 2001
+From: Guilherme Leobas <guilhermeleobas@gmail.com>
+Date: Mon, 12 Dec 2022 23:10:26 -0300
+Subject: [PATCH] Fix Windows build
+
+---
+ CMakeLists.txt                       |  2 +-
+ QueryEngine/FromTableReordering.cpp  | 10 +++++-----
+ QueryEngine/JoinHashTable/HashJoin.h |  2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 300e35d1e5..06b9e84189 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -502,7 +502,7 @@ if(MSVC)
+   # If a future vcpkg release causes the reverse error message, then this line should be removed.
+   add_compile_definitions("BOOST_USE_WINAPI_VERSION=0x0601") #=BOOST_WINAPI_VERSION_WIN7
+   if(ENABLE_NO_WINWARNINGS)
+-    add_compile_definitions("_STL_EXTRA_DISABLED_WARNINGS=4146 4242 4244 4267 4355 4365 4458 4624 4820 4996 5204 5219" "NOMINMAX")
++  add_compile_definitions("_STL_EXTRA_DISABLED_WARNINGS=4146 4242 4244 4267 4355 4365 4458 4624 4820 4996 5204 5219 4571 4582 4583 4623 4625 4626 4710 4711 4774 5026 5027" "NOMINMAX")
+     # disable 4702 unreachable code warning
+     # with /Qspectre set, disable the warning C5045
+     add_compile_options(/W0 /wd4702 /wd5045)
+diff --git a/QueryEngine/FromTableReordering.cpp b/QueryEngine/FromTableReordering.cpp
+index 00d8300638..97cd8aa22e 100644
+--- a/QueryEngine/FromTableReordering.cpp
++++ b/QueryEngine/FromTableReordering.cpp
+@@ -113,7 +113,7 @@ std::tuple<cost_t, cost_t, InnerQualDecision> get_join_qual_cost(
+               return {200, 200, InnerQualDecision::RHS};
+             } else {
+               // otherwise, try to keep the existing ordering
+-              return {180, 190, InnerQualDecision::IGNORE};
++              return {180, 190, InnerQualDecision::IGNORE_};
+             }
+           } else {
+             // poly is the inner table, so we need to reorder tables to use overlaps hash
+@@ -124,7 +124,7 @@ std::tuple<cost_t, cost_t, InnerQualDecision> get_join_qual_cost(
+               return {200, 200, InnerQualDecision::RHS};
+             } else {
+               // otherwise, try to keep the existing ordering
+-              return {180, 190, InnerQualDecision::IGNORE};
++              return {180, 190, InnerQualDecision::IGNORE_};
+             }
+           }
+         }
+@@ -160,16 +160,16 @@ std::tuple<cost_t, cost_t, InnerQualDecision> get_join_qual_cost(
+             std::regex_match(func_name, geo_func_match, geo_func_regex)) {
+           const auto rhs_cost = GEO_TYPE_COSTS[geo_types_for_func[0]];
+           const auto lhs_cost = GEO_TYPE_COSTS[geo_types_for_func[1]];
+-          return {lhs_cost, rhs_cost, InnerQualDecision::IGNORE};
++          return {lhs_cost, rhs_cost, InnerQualDecision::IGNORE_};
+         }
+-        return {200, 200, InnerQualDecision::IGNORE};
++        return {200, 200, InnerQualDecision::IGNORE_};
+       }
+     }
+   }
+ 
+   const auto bin_oper = dynamic_cast<const Analyzer::BinOper*>(qual);
+   if (!bin_oper || !IS_EQUIVALENCE(bin_oper->get_optype())) {
+-    return {200, 200, InnerQualDecision::IGNORE};
++    return {200, 200, InnerQualDecision::IGNORE_};
+   }
+   InnerQualDecision inner_qual_decision = InnerQualDecision::UNKNOWN;
+   if (executor) {
+diff --git a/QueryEngine/JoinHashTable/HashJoin.h b/QueryEngine/JoinHashTable/HashJoin.h
+index 23a5e7d214..0ad6104383 100644
+--- a/QueryEngine/JoinHashTable/HashJoin.h
++++ b/QueryEngine/JoinHashTable/HashJoin.h
+@@ -59,7 +59,7 @@ class TableMustBeReplicated : public std::runtime_error {
+                            "' must be replicated.") {}
+ };
+ 
+-enum class InnerQualDecision { IGNORE = 0, UNKNOWN, LHS, RHS };
++enum class InnerQualDecision { IGNORE_ = 0, UNKNOWN, LHS, RHS };
+ 
+ #ifndef __CUDACC__
+ inline std::ostream& operator<<(std::ostream& os, InnerQualDecision const decision) {
+-- 
+2.38.1
+
