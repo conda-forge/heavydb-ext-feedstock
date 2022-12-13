@@ -8,12 +8,20 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_c_compiler_version10cuda_compiler_versionNonecxx_compiler_version10:
-        CONFIG: linux_64_c_compiler_version10cuda_compiler_versionNonecxx_compiler_version10
+      linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11openssl1.1.1:
+        CONFIG: linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11openssl1.1.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9:
-        CONFIG: linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9
+      linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11openssl3:
+        CONFIG: linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11openssl3
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9openssl1.1.1:
+        CONFIG: linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9openssl1.1.1
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.0
+      linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9openssl3:
+        CONFIG: linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9openssl3
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.0
   timeoutInMinutes: 360

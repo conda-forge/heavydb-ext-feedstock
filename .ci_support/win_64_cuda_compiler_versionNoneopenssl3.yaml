@@ -15,13 +15,13 @@ cxx_compiler:
 fmt:
 - '9'
 geos:
-- 3.11.0
+- 3.11.1
 gflags:
 - '2.2'
 glog:
 - '0.6'
 libarchive:
-- '3.5'
+- '3.6'
 libevent:
 - 2.1.10
 libgdal:
@@ -36,6 +36,8 @@ libthrift:
 - 0.16.0
 ncurses:
 - '6'
+openssl:
+- '3'
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
