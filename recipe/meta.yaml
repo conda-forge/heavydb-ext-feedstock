@@ -1,4 +1,4 @@
-{% set version = "6.2.0" %}  # PEP 386
+{% set version = "6.4.0" %}  # PEP 386
 {% set source_version = version %}
 {% set base_version = version %}
 {% set number = "0" %}
@@ -23,9 +23,10 @@ package:
 
 source:
   url: https://github.com/heavyai/heavydb/archive/v{{ source_version }}.tar.gz
-  sha256: 9b103083d93c7dc3318ae51636f98540ae08f930ab63c0f6dae7882f755588ea
+  sha256: 089b998802456c561a48cf745ac8ca6e07c93f05a9a6f75e5483b003fb0fdf4d
   patches:
     - 0006-Fix-Windows-build-heavydb-620.patch  # [win]
+    - 0007-Fix-Linux-build-heavydb-640.patch  # [linux64]
 
 build:
   number: {{ number }}
