@@ -15,7 +15,7 @@ cxx_compiler:
 fmt:
 - '9'
 geos:
-- 3.11.1
+- 3.12.0
 gflags:
 - '2.2'
 glog:
@@ -23,9 +23,9 @@ glog:
 libarchive:
 - '3.6'
 libevent:
-- 2.1.10
+- 2.1.12
 libgdal:
-- '3.6'
+- '3.7'
 libkml:
 - '1.3'
 libpng:
@@ -33,7 +33,7 @@ libpng:
 librdkafka:
 - '1.9'
 libthrift:
-- 0.18.0
+- 0.18.1
 ncurses:
 - '6'
 openssl:
