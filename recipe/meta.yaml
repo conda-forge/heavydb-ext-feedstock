@@ -92,7 +92,7 @@ outputs:
         - arrow-cpp ={{ arrow_version }}=*cpu
         - bisonpp  # [unix]
         - blosc
-        - boost-cpp
+        - libboost-headers
         - clangdev {{ llvm_version }}
         - double-conversion
         - flex  # [unix]
@@ -205,7 +205,7 @@ outputs:
         - arrow-cpp ={{ arrow_version }}=*{{ build_ext }}
         - bisonpp  # [unix]
         - blosc
-        - boost-cpp
+        - libboost-devel
         - clangdev {{ llvm_version }}
         - double-conversion
         - flex  # [unix]
@@ -233,7 +233,6 @@ outputs:
         - xerces-c
       run:
         - arrow-cpp-proc {{ arrow_proc_version }} {{ build_ext }}
-        - boost-cpp
         - bzip2
         # omnscidb Load-time UDF support calls clang++
         - gxx_{{ target_platform }}  # [not win]
@@ -400,7 +399,7 @@ outputs:
         - arrow-cpp ={{ arrow_version }}=*{{ build_ext }}
         - bisonpp
         - blosc
-        - boost-cpp
+        - libboost-devel
         - clangdev {{ llvm_version }}
         - double-conversion
         - flex
@@ -420,7 +419,6 @@ outputs:
         - xerces-c
       run:
         - arrow-cpp-proc {{ arrow_proc_version }} {{ build_ext }}
-        - boost-cpp
         - bzip2
         # omnscidb Load-time UDF support calls clang++
         - gxx_{{ target_platform }}
@@ -509,7 +507,7 @@ outputs:
         - arrow-cpp ={{ arrow_version }}=*{{ build_ext }}
         - bisonpp
         - blosc
-        - boost-cpp
+        - libboost-headers
         - clangdev {{ llvm_version }}
         - cython
         - double-conversion
