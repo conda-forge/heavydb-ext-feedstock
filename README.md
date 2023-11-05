@@ -3,6 +3,7 @@ About heavydb-ext-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/heavydb-ext-feedstock/blob/main/LICENSE.txt)
 
+
 About heavydb-ext
 -----------------
 
@@ -25,6 +26,23 @@ This recipe provides the following packages:
   heavydbe embedding library, cpu and cuda builds
   pyheavydbe-embedded Python extension module
 
+
+About pyheavydb
+---------------
+
+Home: https://github.com/heavyai/heavydb
+
+Package license: Apache-2.0
+
+Summary: A python DB API 2 compatible client for HeavyDB (formerly OmniSci and MapD).
+
+Development: https://github.com/heavyai/heavydb
+
+Documentation: https://pyheavydb.readthedocs.io
+
+A python DB API 2 compatible client HeavyDB (formerly OmniSci and MapD).
+
+
 About heavydb
 -------------
 
@@ -43,21 +61,6 @@ that was designed from the ground up to run on GPUs.
 
 This recipe provides both CUDA enabled and CUDA disabled heavydb
 packages.
-
-About pyheavydb
----------------
-
-Home: https://github.com/heavyai/heavydb
-
-Package license: Apache-2.0
-
-Summary: A python DB API 2 compatible client for HeavyDB (formerly OmniSci and MapD).
-
-Development: https://github.com/heavyai/heavydb
-
-Documentation: https://pyheavydb.readthedocs.io
-
-A python DB API 2 compatible client HeavyDB (formerly OmniSci and MapD).
 
 
 Current build status
@@ -82,13 +85,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16451&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/heavydb-ext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compiler_versionNonecxx_compiler_version12" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16451&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/heavydb-ext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
                 </a>
               </td>
             </tr><tr>

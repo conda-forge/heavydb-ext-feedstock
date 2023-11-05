@@ -12,8 +12,6 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
-cuda_compiler:
-- None
 cuda_compiler_version:
 - None
 cxx_compiler:
@@ -25,21 +23,21 @@ docker_image:
 fmt:
 - '10'
 geos:
-- 3.11.2
+- 3.12.0
 gflags:
 - '2.2'
 glog:
 - '0.6'
 libarchive:
-- '3.6'
+- '3.7'
 libgdal:
-- '3.6'
+- '3.7'
 libkml:
 - '1.3'
 libpng:
 - '1.6'
 librdkafka:
-- '1.9'
+- '2.2'
 libthrift:
 - 0.18.1
 ncurses:
@@ -55,7 +53,6 @@ pin_run_as_build:
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
-- 3.8.* *_73_pypy
 - 3.8.* *_cpython
 - 3.9.* *_73_pypy
 - 3.9.* *_cpython
@@ -72,7 +69,6 @@ xerces_c:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-  - cuda_compiler
   - cuda_compiler_version
   - cdt_name
   - docker_image
