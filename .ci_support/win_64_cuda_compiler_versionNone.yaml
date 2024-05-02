@@ -31,13 +31,13 @@ libpng:
 librdkafka:
 - '2.2'
 libthrift:
-- 0.18.1
+- 0.20.0
 ncurses:
 - '6'
 openssl:
 - '3'
 snappy:
-- '1'
+- '1.1'
 target_platform:
 - win-64
 tbb:
