@@ -1,4 +1,4 @@
-{% set version = "6.4.0" %}  # PEP 386
+{% set version = "7.1.0" %}  # PEP 386
 {% set source_version = version %}
 {% set base_version = version %}
 {% set number = "0" %}
@@ -23,7 +23,7 @@ package:
 
 source:
   url: https://github.com/heavyai/heavydb/archive/v{{ source_version }}.tar.gz
-  sha256: 089b998802456c561a48cf745ac8ca6e07c93f05a9a6f75e5483b003fb0fdf4d
+  sha256: cc62c83b191d3c9d275e2e4220d21af173b973ca4c449245e58fc8cd05b4bcef
   patches:
     - 0006-Fix-Windows-build-heavydb-620.patch  # [win]
     - 0007-Fix-Linux-build-heavydb-640.patch  # [linux64]
@@ -163,7 +163,7 @@ outputs:
 
   - name: heavydb
     version: {{ version }}
-    script: build-heavydb.sh   # [linux64]
+    script: build-heavydb.sh  # [linux64]
     script: build-heavydb.bat  # [win]
     build:
       string: {{ build_string_ext }}
@@ -172,8 +172,7 @@ outputs:
       skip: true  # [win and cuda_compiler_version != "None"]
       missing_dso_whitelist:
         - '*/libcuda.*'  # [cuda_compiler_version not in (undefined, "None")]
-      track_features:
-        {{ "- arrow-cuda" if cuda_enabled else "" }}
+      track_features: {{ "- arrow-cuda" if cuda_enabled else "" }}
       ignore_run_exports:
         - cudatoolkit    # [cuda_compiler_version not in (undefined, "None")]
         - fmt
@@ -364,8 +363,7 @@ outputs:
       skip: true
       missing_dso_whitelist:
         - '*/libcuda.*'  # [cuda_compiler_version not in (undefined, "None")]
-      track_features:
-        {{ "- arrow-cuda" if cuda_enabled else "" }}
+      track_features: {{ "- arrow-cuda" if cuda_enabled else "" }}
       ignore_run_exports:
         - cudatoolkit    # [cuda_compiler_version not in (undefined, "None")]
         - fmt
@@ -469,8 +467,7 @@ outputs:
       skip: true  # temporarily skipping pyheavydbe build
       missing_dso_whitelist:
         - '*/libcuda.*'  # [cuda_compiler_version not in (undefined, "None")]
-      track_features:
-        {{ "- arrow-cuda" if cuda_enabled else "" }}
+      track_features: {{ "- arrow-cuda" if cuda_enabled else "" }}
       ignore_run_exports:
         - arrow-cpp {{ arrow_version }}
         - blosc
