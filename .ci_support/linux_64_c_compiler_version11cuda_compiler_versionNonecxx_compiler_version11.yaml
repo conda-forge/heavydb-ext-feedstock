@@ -41,7 +41,7 @@ libpng:
 librdkafka:
 - '1.9'
 libthrift:
-- 0.18.0
+- 0.18.1
 ncurses:
 - '6'
 openssl:
