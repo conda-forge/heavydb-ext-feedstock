@@ -3,7 +3,7 @@ boost_cpp:
 c_compiler:
 - gcc
 c_compiler_version:
-- '11'
+- '12'
 cdt_name:
 - cos6
 cgo_compiler:
@@ -12,20 +12,18 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
-cuda_compiler:
-- nvcc
 cuda_compiler_version:
 - None
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '11'
+- '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 fmt:
 - '9'
 geos:
-- 3.11.1
+- 3.12.0
 gflags:
 - '2.2'
 glog:
@@ -41,7 +39,7 @@ libpng:
 librdkafka:
 - '1.9'
 libthrift:
-- 0.18.0
+- 0.18.1
 ncurses:
 - '6'
 openssl:
