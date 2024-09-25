@@ -1,11 +1,15 @@
+About heavydb-ext-feedstock
+===========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/heavydb-ext-feedstock/blob/main/LICENSE.txt)
+
+
 About heavydb-ext
-=================
+-----------------
 
 Home: https://heavy.ai
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/heavydb-ext-feedstock/blob/main/LICENSE.txt)
 
 Summary: The HeavyDB database
 
@@ -21,6 +25,42 @@ This recipe provides the following packages:
   pyheavydb Python connector
   heavydbe embedding library, cpu and cuda builds
   pyheavydbe-embedded Python extension module
+
+
+About pyheavydb
+---------------
+
+Home: https://github.com/heavyai/heavydb
+
+Package license: Apache-2.0
+
+Summary: A python DB API 2 compatible client for HeavyDB (formerly OmniSci and MapD).
+
+Development: https://github.com/heavyai/heavydb
+
+Documentation: https://pyheavydb.readthedocs.io
+
+A python DB API 2 compatible client HeavyDB (formerly OmniSci and MapD).
+
+
+About heavydb
+-------------
+
+Home: https://heavy.ai
+
+Package license: Apache-2.0
+
+Summary: The HeavyDB database
+
+Development: https://github.com/heavyai/heavydb
+
+Documentation: https://docs.heavy.ai/
+
+HeavyDB is an in-memory, column store, SQL relational database
+that was designed from the ground up to run on GPUs.
+
+This recipe provides both CUDA enabled and CUDA disabled heavydb
+packages.
 
 
 Current build status
@@ -41,24 +81,17 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11</td>
+              <td>linux_64_c_compiler_version13cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version13</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16451&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/heavydb-ext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/heavydb-ext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compilerNonecuda_compiler_versionNonecxx_compiler_version13" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9</td>
+              <td>win_64_cuda_compilerNonecuda_compiler_versionNone</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16451&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/heavydb-ext-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_cuda_compiler_versionNone</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16451&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/heavydb-ext-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compiler_versionNone" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/heavydb-ext-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compilerNonecuda_compiler_versionNone" alt="variant">
                 </a>
               </td>
             </tr>
@@ -144,7 +177,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
