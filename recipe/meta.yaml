@@ -37,6 +37,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
   host:
     - openssl
 
@@ -74,6 +75,7 @@ outputs:
       build:
         # c compiler is specified here to get run constraint pins correct, presumably...
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         # go required for ThirdParty/generate_cert
         - {{ compiler('cgo') }}
         - {{ compiler('cxx') }}
@@ -190,6 +192,7 @@ outputs:
       build:
         # c compiler is specified here to get run constraint pins correct, presumably..
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cgo') }}
         - {{ compiler('cxx') }}
         - {{ compiler("cuda") }}  # [cuda_compiler_version not in (undefined, "None")]
@@ -385,6 +388,7 @@ outputs:
       build:
         # c compiler is specified here to get run constraint pins correct, presumably..
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cgo') }}
         - {{ compiler('cxx') }}
         - {{ compiler("cuda") }}  # [cuda_compiler_version not in (undefined, "None")]
@@ -494,6 +498,7 @@ outputs:
       build:
         # c compiler is specified here to get run constraint pins correct, presumably..
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cgo') }}
         - {{ compiler('cxx') }}
         - {{ compiler("cuda") }}  # [cuda_compiler_version not in (undefined, "None")]
