@@ -1,7 +1,11 @@
 boost_cpp:
 - 1.78.0
 c_compiler:
-- vs2019
+- gcc
+c_compiler_version:
+- '12'
+cdt_name:
+- cos7
 cgo_compiler:
 - go-cgo
 channel_sources:
@@ -11,7 +15,11 @@ channel_targets:
 cuda_compiler_version:
 - None
 cxx_compiler:
-- vs2019
+- gxx
+cxx_compiler_version:
+- '12'
+docker_image:
+- quay.io/condaforge/linux-anvil-ppc64le
 fmt:
 - '9'
 geos:
@@ -22,8 +30,6 @@ glog:
 - '0.6'
 libarchive:
 - '3.6'
-libevent:
-- 2.1.12
 libgdal:
 - '3.6'
 libkml:
@@ -44,10 +50,16 @@ pin_run_as_build:
 snappy:
 - '1'
 target_platform:
-- win-64
+- linux-ppc64le
 tbb:
 - '2021'
 tbb_devel:
 - '2021'
 xerces_c:
 - '3.2'
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
+  - cuda_compiler_version
+  - cdt_name
+  - docker_image
